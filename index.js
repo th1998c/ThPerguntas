@@ -8,12 +8,14 @@ app.set("view engine","ejs")
 app.get("/:nome/:lang",(req, res) => {
     var nome = req.params.nome
     var lang = req.params.lang
+    var exibirMsg = false
     // renderisando index.ejs e passando variaveis para o html
     res.render("index.ejs",{
         nome: nome,
         lang: lang,
         empresa: "ThPerguntas",
-        nascimento: 1998
+        nascimento: 1998,
+        msg: exibirMsg
     })
 })
 

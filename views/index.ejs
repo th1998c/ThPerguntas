@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" co5ntent="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ThPerguntas</title>
 </head>
@@ -15,6 +15,12 @@
     <p>Linguagem favorita: <%= lang %></p>
     <p>Empresa: <%= empresa %></p>
     <p>Ano de nascimento: <%= nascimento %></p>
+    
+    <% if(msg){ %>
+        <h3>Isso é uma mensagem de erro!</h3>
+    <% }else{ %>
+        <h3>Nenhum erro</h3>
+    <% } %>   
 
 </body>
 </html>
