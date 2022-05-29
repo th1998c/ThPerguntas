@@ -3,7 +3,8 @@ const app = express()
 
 // chamano ejs
 app.set("view engine","ejs")
-
+// arquivos estaticos
+app.use(express.static('public'))
 // rota inicial
 app.get("/:nome/:lang",(req, res) => {
     var nome = req.params.nome
