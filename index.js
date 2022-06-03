@@ -16,6 +16,11 @@ app.get("/perguntar",(req,res) =>{
     res.render("perguntar.ejs")
 })
 
+//rota de submit de pergunta
+app.post("/enviarpergunta",(req,res) =>{
+    res.send('formulário recebido')
+})
+
 // abertura servidor
 app.listen(8080,()=>{
     console.log("servidor está rodando")
