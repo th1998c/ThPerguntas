@@ -17,6 +17,7 @@ connection.authenticate()
 
 //chamando body-parser
 const bodyParser = require("body-parser")
+const Pergunta = require("./database/Pergunta")
 
 // chamano ejs
 app.set("view engine","ejs")
@@ -30,8 +31,13 @@ app.use(bodyParser.json())
 
 // rota inicial
 app.get("/",(req, res) => {
-    // renderisando index.ejs e passando variaveis para o html
-    res.render("index.ejs")
+    // buscando perguntas no banco
+    Pergunta.findAll({ raw: true }).then(perguntas => {
+    res.render("index.ejs",{
+        perguntas: perguntas
+    })
+
+    })
 })
 // rota de página do formulario de pergunta
 app.get("/perguntar",(req,res) =>{
