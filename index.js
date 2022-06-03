@@ -4,8 +4,10 @@ const app = express()
 
 //chamando conexão banco
 const connection = require("./database/database")
-//inportando model pergunta
+//importando model pergunta
 const pergunta = require('./database/Pergunta')
+//importando model respostas
+const resposta = require('./database/Resposta')
 //database
 connection.authenticate()
 .then(() =>{
