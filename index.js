@@ -5,7 +5,7 @@ const app = express()
 //chamando conexão banco
 const connection = require("./database/database")
 //inportando model pergunta
-const perguntaModel = require('./database/Pergunta')
+const pergunta = require('./database/Pergunta')
 //database
 connection.authenticate()
 .then(() =>{
@@ -42,7 +42,12 @@ app.get("/perguntar",(req,res) =>{
 app.post("/enviarpergunta",(req,res) =>{
     var titulo = req.body.titulo
     var descricao = req.body.descricao
-    res.send('formulário recebido! título: '+titulo+'<br> descrição: '+descricao)
+    pergunta.create({ // insert into perguntas values...
+        titulo: titulo,
+        descricao: descricao
+    }).then(() => {
+        res.redirect('/')
+    })
 })
 
 // abertura servidor

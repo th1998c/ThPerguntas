@@ -7,7 +7,7 @@ const Pergunta = connection.define('perguntas',{ //'pergunta' é o nome da tabel
         type: Sequelize.STRING,
         allowNUll:false         //não permite null
     },
-    decricao:{
+    descricao:{
         type: Sequelize.TEXT,
         allowNUll:false
     }
@@ -16,3 +16,5 @@ const Pergunta = connection.define('perguntas',{ //'pergunta' é o nome da tabel
 Pergunta.sync({force: false}).then(() => {  // passando tabela para criação caso não exista
     console.log("Tabela 'pergunta' criada.")
 })
+
+module.exports = Pergunta
