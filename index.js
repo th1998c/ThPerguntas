@@ -2,6 +2,18 @@ const express = require("express")
 const req = require("express/lib/request")
 const app = express()
 
+//chamando conexão banco
+const connection = require("./database/database")
+
+//database
+connection.authenticate()
+.then(() =>{
+    console.log('conexão feita com o banco de dados')
+})
+.catch((msgErro) =>{
+    console.log(erro)
+})
+
 //chamando body-parser
 const bodyParser = require("body-parser")
 
