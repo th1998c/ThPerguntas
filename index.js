@@ -57,6 +57,25 @@ app.post("/enviarpergunta",(req,res) =>{
     })
 })
 
+//rota recebendo id da pergunta como parametro e fazendo busca com ele.
+app.get('/pergunta/:id',(req, res)=>{
+   var id = req.params.id
+   Pergunta.findOne({ raw: true,
+       where:{
+           id:id
+       }
+   }).then(pergunta =>{
+       if(pergunta != undefined){
+            res.render("pergunta.ejs",{
+                pergunta: pergunta
+            })
+       }else{
+            res.redirect('/')
+       }
+
+   })
+})
+
 // abertura servidor
 app.listen(8080,()=>{
     console.log("servidor está rodando")
