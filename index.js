@@ -4,7 +4,8 @@ const app = express()
 
 //chamando conexão banco
 const connection = require("./database/database")
-
+//inportando model pergunta
+const perguntaModel = require('./database/Pergunta')
 //database
 connection.authenticate()
 .then(() =>{
