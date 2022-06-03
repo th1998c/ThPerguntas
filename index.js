@@ -1,4 +1,5 @@
 const express = require("express")
+const req = require("express/lib/request")
 const app = express()
 
 // chamano ejs
@@ -9,6 +10,10 @@ app.use(express.static('public'))
 app.get("/",(req, res) => {
     // renderisando index.ejs e passando variaveis para o html
     res.render("index.ejs")
+})
+
+app.get("/perguntar",(req,res) =>{
+    res.render("perguntar.ejs")
 })
 
 // abertura servidor
