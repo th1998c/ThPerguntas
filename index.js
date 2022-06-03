@@ -32,11 +32,12 @@ app.use(bodyParser.json())
 // rota inicial
 app.get("/",(req, res) => {
     // buscando perguntas no banco
-    Pergunta.findAll({ raw: true }).then(perguntas => {
-    res.render("index.ejs",{
-        perguntas: perguntas
-    })
-
+    Pergunta.findAll({ raw: true, order:[ //raw receber apenas dados do banco // order ordenar
+    ['id','DESC'] // DESC = decrescente ASC = crescente
+    ] }).then(perguntas => {
+        res.render("index.ejs",{
+            perguntas: perguntas
+        })
     })
 })
 // rota de página do formulario de pergunta
