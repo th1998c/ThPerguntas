@@ -7,7 +7,7 @@ const connection = require("./database/database")
 //importando model pergunta
 const pergunta = require('./database/Pergunta')
 //importando model respostas
-const resposta = require('./database/Resposta')
+const Resposta = require('./database/Resposta')
 //database
 connection.authenticate()
 .then(() =>{
@@ -68,14 +68,33 @@ app.get('/pergunta/:id',(req, res)=>{
        }
    }).then(pergunta =>{
        if(pergunta != undefined){
-            res.render("pergunta.ejs",{
-                pergunta: pergunta
+            Resposta.findAll({ raw: true, order:[
+                ['id','DESC']
+            ],
+                where: {perguntaId: pergunta.id}
+            }).then(resposta =>{
+                res.render("pergunta.ejs",{
+                    pergunta: pergunta,
+                    resposta: resposta
+                })
             })
        }else{
             res.redirect('/')
        }
 
    })
+})
+
+app.post('/enviarresposta',(req,res)=>{
+    var corpo = req.body.corpo
+    var perguntaId = req.body.pergunta
+    Resposta.create({
+        corpo: corpo,
+        perguntaId: perguntaId
+    }).then(() =>{
+        res.redirect('/pergunta/'+perguntaId)
+    })
+
 })
 
 // abertura servidor
